@@ -275,7 +275,9 @@
         onClose: function () {
           calendarOpen = false
         }
-      });
+      }).next(".ui-datepicker-trigger")
+          .addClass("fa fa-calendar")
+          .text('').attr('alt', '');
       $input.width($input.width() - 18);
     };
 
