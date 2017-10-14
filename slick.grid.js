@@ -331,46 +331,53 @@ if (typeof Slick === "undefined") {
         setupColumnSort();
         createCssRules();
         resizeCanvas();
-        bindAncestorScrollEvents();
 
-        $container
-            .on("resize.slickgrid", resizeCanvas);
-        $viewport
-            //.on("click", handleClick)
-            .on("scroll", handleScroll);
-        $headerScroller
-            .on("contextmenu", handleHeaderContextMenu)
-            .on("click", handleHeaderClick)
-            .on("mouseenter", ".slick-header-column", handleHeaderMouseEnter)
-            .on("mouseleave", ".slick-header-column", handleHeaderMouseLeave);
-        $headerRowScroller
-            .on("scroll", handleHeaderRowScroll);
+        // QUANTOPIAN ADDED
+        bindAllEvents();
 
-        if (options.createFooterRow) {
-          $footerRowScroller
-              .on("scroll", handleFooterRowScroll);
-        }
-
-        $focusSink.add($focusSink2)
-            .on("keydown", handleKeyDown);
-        $canvas
-            .on("keydown", handleKeyDown)
-            .on("click", handleClick)
-            .on("dblclick", handleDblClick)
-            .on("contextmenu", handleContextMenu)
-            .on("draginit", handleDragInit)
-            .on("dragstart", {distance: 3}, handleDragStart)
-            .on("drag", handleDrag)
-            .on("dragend", handleDragEnd)
-            .on("mouseenter", ".slick-cell", handleMouseEnter)
-            .on("mouseleave", ".slick-cell", handleMouseLeave);
-
-        // Work around http://crbug.com/312427.
-        if (navigator.userAgent.toLowerCase().match(/webkit/) &&
-            navigator.userAgent.toLowerCase().match(/macintosh/)) {
-          $canvas.on("mousewheel", handleMouseWheel);
-        }
         restoreCssFromHiddenInit();
+      }
+    }
+
+    function bindAllEvents() {
+      bindAncestorScrollEvents();
+
+      $container
+          .on("resize.slickgrid", resizeCanvas);
+      $viewport
+          //.on("click", handleClick)
+          .on("scroll", handleScroll);
+      $headerScroller
+          .on("contextmenu", handleHeaderContextMenu)
+          .on("click", handleHeaderClick)
+          .on("mouseenter", ".slick-header-column", handleHeaderMouseEnter)
+          .on("mouseleave", ".slick-header-column", handleHeaderMouseLeave);
+      $headerRowScroller
+          .on("scroll", handleHeaderRowScroll);
+
+      if (options.createFooterRow) {
+        $footerRowScroller
+            .on("scroll", handleFooterRowScroll);
+      }
+
+      $focusSink.add($focusSink2)
+          .on("keydown", handleKeyDown);
+      $canvas
+          .on("keydown", handleKeyDown)
+          .on("click", handleClick)
+          .on("dblclick", handleDblClick)
+          .on("contextmenu", handleContextMenu)
+          .on("draginit", handleDragInit)
+          .on("dragstart", {distance: 3}, handleDragStart)
+          .on("drag", handleDrag)
+          .on("dragend", handleDragEnd)
+          .on("mouseenter", ".slick-cell", handleMouseEnter)
+          .on("mouseleave", ".slick-cell", handleMouseLeave);
+
+      // Work around http://crbug.com/312427.
+      if (navigator.userAgent.toLowerCase().match(/webkit/) &&
+          navigator.userAgent.toLowerCase().match(/macintosh/)) {
+        $canvas.on("mousewheel", handleMouseWheel);
       }
     }
 
@@ -3694,6 +3701,7 @@ if (typeof Slick === "undefined") {
       "setCellCssStyles": setCellCssStyles,
       "removeCellCssStyles": removeCellCssStyles,
       "getCellCssStyles": getCellCssStyles,
+      "bindAllEvents": bindAllEvents,
 
       "init": finishInitialization,
       "destroy": destroy,
