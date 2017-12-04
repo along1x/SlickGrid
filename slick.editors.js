@@ -210,7 +210,10 @@
     };
 
     this.serializeValue = function () {
-	  var rtn = parseFloat($input.val()) || 0;
+    if ($input.val() === ""){
+      return null;
+    }
+	  var rtn = parseFloat($input.val()) || defaultValue;
 
 	  var decPlaces = getDecimalPlaces();
 	  if (decPlaces !== null
@@ -227,7 +230,7 @@
     };
 
     this.isValueChanged = function () {
-      return (!($input.val() == "" && defaultValue == null)) && ($input.val() != defaultValue);
+      return $input.val() != defaultValue;
     };
 
     this.validate = function () {
