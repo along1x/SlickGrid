@@ -213,7 +213,8 @@
     if ($input.val() === ""){
       return null;
     }
-	  var rtn = parseFloat($input.val()) || defaultValue;
+    var parsed_val = parseFloat($input.val());
+	  var rtn = parsed_val === 0 ? 0 : (parsed_val || defaultValue);
 
 	  var decPlaces = getDecimalPlaces();
 	  if (decPlaces !== null
