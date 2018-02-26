@@ -1,6 +1,6 @@
 {
   "name": "slickgrid-qgrid",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A fork of 6pac/SlickGrid used by Qgrid",
   "main": "slick.core.js",
   "directories": {
